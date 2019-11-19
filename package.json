@@ -20,6 +20,7 @@
     "postgrator-cli": "^3.3.0"
   },
   "scripts": {
+    "dev": "nodemon ./src/app/server.js",
     "test": "mocha"
   },
   "keywords": [],
