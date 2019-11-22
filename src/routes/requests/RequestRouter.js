@@ -13,7 +13,7 @@ RequesRouter
     .post((req, res)=>{
         console.log(req.body)
         RequestsService.createRequest( req.app.get("db"), req.body)
-            .then( data => res.status(201).json({ requests: "Created"}))
+            .then( data => res.status(201).json({ id: data}))
     })
     .patch((req, res)=>{
         console.log(req.body.service, req.body.id);
