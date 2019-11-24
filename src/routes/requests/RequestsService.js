@@ -6,7 +6,7 @@ const RequestsService = {
         return db.insert(request).into("requests");
     },
     updateRequest(db, request, id){
-        return db.update({service: request}).from("requests").where({id});
+        return db.update(request).from("requests").where({id});
     }
 };
 

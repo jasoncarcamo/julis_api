@@ -16,8 +16,14 @@ RequesRouter
             .then( data => res.status(201).json({ id: data}))
     })
     .patch((req, res)=>{
-        console.log(req.body.service, req.body.id);
-        RequestsService.updateRequest( req.app.get("db"), req.body.service, req.body.id)
+        console.log(req.body);
+        const update = {
+            service: req.body.service,
+            price: req.body.price,
+            confirmed: req.body.confirmed === true ? req.body.confirmed : false
+        };
+
+        RequestsService.updateRequest( req.app.get("db"), update, req.body.id)
             .then( data => res.status(204).json({ request: "Sent"}));
     })
 

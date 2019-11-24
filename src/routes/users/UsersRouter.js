@@ -9,9 +9,9 @@ UsersRouter
     .all(express.urlencoded({ extended: true}))
     .all(requireAuth)
     .get((req, res)=>{
-        UsersService.getAllUsers( req.app.get("db"))
-            .then( users => {
-                return res.status(200).json({ users })
+        UsersService.getUser( req.app.get("db"), req.user.id)
+            .then( user => {
+                return res.status(200).json({ user })
             });
     });
 
