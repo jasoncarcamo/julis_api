@@ -58,7 +58,7 @@ RegisterRouter
                                 const sub = createdUser.mobile_number;
                                 const payload = { user: createdUser.id};
 
-                                return res.status(201).json({ token: AuthService.createJwt(sub, payload)});
+                                return res.status(201).json({ token: AuthService.createJwt(sub, payload), id: createdUser.id});
                             });
                     });
             });
