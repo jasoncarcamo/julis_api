@@ -15,7 +15,7 @@ RegisterRouter
         const {first_name, last_name, email, mobile_number, password, house_number, apartment_number, street_name, city, state, zip_code} = req.body;
 
         if(req.body.apartment_number == undefined){
-            console.log("yeah", req.body.first_name)
+            
             req.body.apartment_number = "null"
         };
 
@@ -47,13 +47,11 @@ RegisterRouter
 
                 RegisterService.hashPassword(newUser.password)
                     .then( hashedPassword => {
-                        console.log(hashedPassword)
+                        
                         newUser.password = hashedPassword;
 
                         RegisterService.insertUser(req.app.get("db"), newUser)
                             .then( createdUser => {
-
-                                console.log(createdUser);
 
                                 const sub = createdUser.mobile_number;
                                 const payload = { user: createdUser.id};

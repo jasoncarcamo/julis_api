@@ -11,20 +11,24 @@ RequesRouter
             .then( data => res.status(200).json({ requests: data}));
     })
     .post((req, res)=>{
-        console.log(req.body)
+        
         RequestsService.createRequest( req.app.get("db"), req.body)
-            .then( data => res.status(201).json({ id: data}))
+            .then( data => res.status(201).json({ id: data}));
     })
     .patch((req, res)=>{
-        console.log(req.body);
+        
         const update = {
             service: req.body.service,
             price: req.body.price,
             confirmed: req.body.confirmed === true ? req.body.confirmed : false
         };
 
+        if(!req.body.id){
+            return res.status(400).json({ error: "Bad request"})
+        }
+
         RequestsService.updateRequest( req.app.get("db"), update, req.body.id)
-            .then( data => res.status(204).json({ request: "Sent"}));
+            .then( data => res.status(200).json({ request: "Sent"}));
     })
 
 module.exports = RequesRouter;
