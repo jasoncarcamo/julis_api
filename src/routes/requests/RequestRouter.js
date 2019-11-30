@@ -20,6 +20,8 @@ RequesRouter
         const update = {
             service: req.body.service,
             price: req.body.price,
+            time: req.body.time,
+            date: req.body.date,
             confirmed: req.body.confirmed === true ? req.body.confirmed : false
         };
 
