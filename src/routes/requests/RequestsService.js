@@ -2,6 +2,9 @@ const RequestsService = {
     getAllRequests(db){
         return db.select("*").from("requests").returning("*");
     },
+    getRequestById(db, id){
+        return db.select("*").from("requests").where({user_id: id}).returning("*");
+    },
     createRequest(db, request){
         return db.insert(request).into("requests");
     },

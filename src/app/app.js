@@ -3,6 +3,7 @@ const app = express();
 const helmet = require("helmet");
 const cors = require("cors");
 const morgan = require("morgan");
+const {requireAuth} = require("../middleware/JwtAuth");
 
 const ServicesRouter = require("../routes/services/ServicesRouter");
 const RequestsRouter = require("../routes/requests/RequestRouter");
@@ -16,9 +17,9 @@ app.use(cors());
 app.use(helmet());
 
 app.use("/api", ServicesRouter);
-app.use("/api", RequestsRouter);
+app.use("/api", requireAuth, RequestsRouter);
 app.use("/api", RegisterRouter);
-app.use("/api", UsersRouter);
+app.use("/api", requireAuth, UsersRouter);
 app.use("/api", LoginRouter);
 app.use("/api", ChargeRouter);
 

@@ -33,4 +33,21 @@ RequesRouter
             .then( data => res.status(200).json({ request: "Sent"}));
     })
 
+RequesRouter
+    .route("/requests/:id")
+    .all(express.json())
+    .all(express.urlencoded({ extended: true}))
+    .get((req, res)=>{
+        RequestsService.getRequestById(req.app.get("db"), req.params.id)
+            .then( data => {
+                console.log(data);
+                if(!data){
+                    return res.status(400).json({ error: "No requests found by client"})
+                };
+
+                return res.status(200).json({ requests: data})
+            })
+    })
+
+
 module.exports = RequesRouter;
