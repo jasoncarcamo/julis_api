@@ -36,7 +36,7 @@ LoginRouter
                         
                         const sub = dbUser.mobile_number;
                         const payload = { user: dbUser.id};
-
+                        console.log(AuthService.createJwt(sub, payload));
                         return res.status(201).json({ token: AuthService.createJwt(sub, payload)})
                     });
             });

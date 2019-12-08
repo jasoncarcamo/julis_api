@@ -26,7 +26,7 @@ ChargeRouter
             html: "<html> <header> <h3>Julis Cleaning service</h3></header> <main> <p>Your services have been processed<p></main></html>"
         };
 
-        transporter.sendMail( mailOptions, ( error, info)=>{
+        /*transporter.sendMail( mailOptions, ( error, info)=>{
             if(error){
                 console.log(error);
             };
@@ -34,7 +34,7 @@ ChargeRouter
             if(info.response){
                 console.log(info.response);
             };
-        });
+        });*/
 
         return res.status(201).json({status});
     });

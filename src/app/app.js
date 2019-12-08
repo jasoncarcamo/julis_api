@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const helmet = require("helmet");
@@ -17,9 +18,9 @@ app.use(cors());
 app.use(helmet());
 
 app.use("/api", ServicesRouter);
-app.use("/api", requireAuth, RequestsRouter);
+app.use("/api", RequestsRouter);
 app.use("/api", RegisterRouter);
-app.use("/api", requireAuth, UsersRouter);
+app.use("/api", UsersRouter);
 app.use("/api", LoginRouter);
 app.use("/api", ChargeRouter);
 

@@ -2,10 +2,11 @@ require("dotenv").config()
 const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
-    service: 'yahoo',
+    service: 'Yahoo',
+    port: 587,
     auth: {
         user: "jasoncarcamo30@yahoo.com",
-        pass: "Gearsofwar33!"
+        pass: "igld kywe pcub eerf"
     }
 });
 

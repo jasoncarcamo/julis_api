@@ -1,10 +1,13 @@
 const express = require("express");
 const RequesRouter = express.Router();
 const RequestsService = require("./RequestsService");
+const {requireAuth} = require("../../middleware/JwtAuth");
+const transporter = require("../../nodemailer/nodemailer"); 
 
 RequesRouter
     .route("/requests")
     .all(express.json())
+    .all(requireAuth)
     .all(express.urlencoded({ extended: true}))
     .get(( req, res) => {
         RequestsService.getAllRequests(req.app.get("db"))
@@ -25,6 +28,25 @@ RequesRouter
             confirmed: req.body.confirmed === true ? req.body.confirmed : false
         };
 
+        if(update.confirmed){
+            const mailOptions = {
+                from: "jasoncarcamo30@yahoo.com",
+                to: "jasoncarcamo30@gmail.com",
+                subject: "Your services have been processed",
+                html: `<main style="text-align: center;"><p>Your services have been processed<p></main>`
+            };
+    
+            transporter.sendMail( mailOptions, ( error, info)=>{
+                if(error){
+                    console.log(error);
+                };
+    
+                if(info){
+                    console.log(info);
+                };
+            });
+        }
+
         if(!req.body.id){
             return res.status(400).json({ error: "Bad request"})
         }
@@ -35,9 +57,11 @@ RequesRouter
 
 RequesRouter
     .route("/requests/:id")
+    .all(requireAuth)
     .all(express.json())
     .all(express.urlencoded({ extended: true}))
     .get((req, res)=>{
+        
         RequestsService.getRequestById(req.app.get("db"), req.params.id)
             .then( data => {
                 console.log(data);

@@ -1,9 +1,12 @@
 const express = require("express");
 const UsersRouter = express.Router();
 const UsersService = require("./UsersService");
+const {requireAuth} = require("../../middleware/JwtAuth");
+
 
 UsersRouter
     .route("/users")
+    .all(requireAuth)
     .all(express.json())
     .all(express.urlencoded({ extended: true}))
     .get((req, res)=>{
@@ -15,6 +18,7 @@ UsersRouter
 
 UsersRouter
     .route("/user")
+    .all(requireAuth)
     .all(express.json())
     .all(express.urlencoded({ extended: true}))
     .get((req, res)=>{
