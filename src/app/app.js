@@ -16,7 +16,7 @@ const ContactRouter = require("../routes/contact/ContactRouter");
 const ResetRouter = require("../routes/password/ResetRouter");
 
 app.use(morgan("tiny"));
-app.use(cors());
+app.use("/api", cors());
 app.use(helmet());
 
 app.use("/api", ServicesRouter);
