@@ -12,7 +12,6 @@ ResetPassword
     .route("/reset")
     .all(requireAuth)
     .all(express.json())
-    .all(express.urlencoded({ extended: true}))
     .post((req, res)=> {
         const {
             newPassword,

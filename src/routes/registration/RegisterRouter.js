@@ -8,7 +8,6 @@ const xss = require("xss");
 RegisterRouter
     .route("/register")
     .all(express.json())
-    .all(express.urlencoded({ extended: true}))
     .get((req, res)=>{
         RegisterService.getUsers(req.app.get("db"))
             .then( data => res.status(200).json({ user: data}));

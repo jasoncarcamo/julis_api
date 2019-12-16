@@ -7,7 +7,6 @@ const xss = require("xss");
 ContactRouter
     .route("/contact")
     .all(express.json())
-    .all(express.urlencoded({ extended: true}))
     .get((req, res)=> {
 
     })
@@ -64,7 +63,6 @@ ContactRouter
     .route("/contact/:id")
     .all(requireAuth)
     .all(express.json())
-    .all(express.urlencoded({ extended: true}))
     .get((req, res)=>{
 
     })

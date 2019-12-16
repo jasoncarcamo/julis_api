@@ -6,7 +6,6 @@ const xss = require("xss");
 LoginRouter
     .route("/login")
     .all(express.json())
-    .all(express.urlencoded({ extended:  true}))
     .post((req, res)=>{
         const { mobile_number, password} = req.body;
 

@@ -11,7 +11,6 @@ RequesRouter
     .route("/requests")
     .all(express.json())
     .all(requireAuth)
-    .all(express.urlencoded({ extended: true}))
     .get(( req, res) => {
         RequestsService.getAllRequests(req.app.get("db"))
             .then( data => res.status(200).json({ requests: data}));
@@ -63,7 +62,6 @@ RequesRouter
     .route("/requests/:id")
     .all(requireAuth)
     .all(express.json())
-    .all(express.urlencoded({ extended: true}))
     .get((req, res)=>{
         
         RequestsService.getRequestById(req.app.get("db"), req.params.id)

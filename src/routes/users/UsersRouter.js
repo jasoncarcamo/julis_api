@@ -9,7 +9,6 @@ UsersRouter
     .route("/users")
     .all(requireAuth)
     .all(express.json())
-    .all(express.urlencoded({ extended: true}))
     .get((req, res)=>{
         UsersService.getUser( req.app.get("db"), req.user.id)
             .then( user => {
@@ -21,7 +20,6 @@ UsersRouter
     .route("/user")
     .all(requireAuth)
     .all(express.json())
-    .all(express.urlencoded({ extended: true}))
     .get((req, res)=>{
         UsersService.getUser( req.app.get("db"), req.user.id)
             .then( user => {
