@@ -75,7 +75,7 @@ RegisterRouter
                                     };
                                 });
 
-                                return res.status(201).json({ token: AuthService.createJwt(sub, payload), id: createdUser.id});
+                                return res.status(200).json({ token: AuthService.createJwt(sub, payload), id: createdUser.id});
                             });
                     });
             });

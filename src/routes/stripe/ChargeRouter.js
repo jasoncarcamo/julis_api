@@ -36,7 +36,7 @@ ChargeRouter
             };
         });*/
 
-        return res.status(201).json({status});
+        return res.status(200).json({status});
     });
 
 module.exports = ChargeRouter;

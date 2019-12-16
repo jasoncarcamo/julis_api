@@ -69,7 +69,7 @@ ResetPassword
                                             };
                                         });
                                         
-                                        return res.status(201).json({ success: "Your password has been changed"});
+                                        return res.status(200).json({ success: "Your password has been changed"});
                                     })
                             })
                     })

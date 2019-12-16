@@ -51,7 +51,7 @@ ContactRouter
             };
 
             if(info){
-                return res.status(201).json({ success: "Your comment has been sent"});
+                return res.status(200).json({ success: "Your comment has been sent"});
             };
         });
 
@@ -89,7 +89,7 @@ ContactRouter
 
         });
 
-        return res.status(201).json({ success: "Your comment had been sent."})
+        return res.status(200).json({ success: "Your comment had been sent."})
     })
 
 module.exports = ContactRouter;

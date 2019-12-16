@@ -18,7 +18,7 @@ RequesRouter
     .post((req, res)=>{
         
         RequestsService.createRequest( req.app.get("db"), req.body)
-            .then( data => res.status(201).json({ id: data}));
+            .then( data => res.status(200).json({ id: data}));
     })
     .patch((req, res)=>{
         
