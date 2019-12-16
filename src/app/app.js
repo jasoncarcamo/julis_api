@@ -4,7 +4,6 @@ const app = express();
 const helmet = require("helmet");
 const cors = require("cors");
 const morgan = require("morgan");
-const {requireAuth} = require("../middleware/JwtAuth");
 
 const ServicesRouter = require("../routes/services/ServicesRouter");
 const RequestsRouter = require("../routes/requests/RequestRouter");
@@ -16,7 +15,7 @@ const ContactRouter = require("../routes/contact/ContactRouter");
 const ResetRouter = require("../routes/password/ResetRouter");
 
 app.use(morgan("tiny"));
-app.use("/api", cors());
+app.use(cors());
 app.use(helmet());
 
 app.use("/api", ServicesRouter);
