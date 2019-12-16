@@ -2,7 +2,7 @@
   "name": "julis-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/app/server.js",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
@@ -32,6 +32,9 @@
     "test": "mocha"
   },
   "keywords": [],
+  "engines": {
+    "node": "10.16.0"
+  },
   "author": "",
   "license": "ISC"
 }
