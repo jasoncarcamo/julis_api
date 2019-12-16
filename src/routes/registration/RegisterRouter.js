@@ -2,6 +2,8 @@ const express = require("express");
 const RegisterRouter = express.Router();
 const RegisterService = require("./RegisterService");
 const AuthService = require("../login/AuthService");
+const transporter = require("../../nodemailer/nodemailer");
+const xss = require("xss");
 
 RegisterRouter
     .route("/register")
@@ -37,6 +39,12 @@ RegisterRouter
             if(value === undefined){
                 return res.status(400).json({ error: `Missing ${key} in body request`});
             };
+
+            newUser[key] = xss( value, {
+                whiteList: [],
+                stripIgnoreTag: true,
+                stripIgnoreTagBody: ['script']
+              });
         };
 
         RegisterService.getUser(req.app.get("db"), newUser.mobile_number)
@@ -55,6 +63,18 @@ RegisterRouter
 
                                 const sub = createdUser.mobile_number;
                                 const payload = { user: createdUser.id};
+                                const mailOptions = {
+                                    from: "jasoncarcamo30@yahoo.com",
+                                    to: newUser.email,
+                                    subject: "Do Not Reply",
+                                    html: `<main style="text-align: center;"><p>You have successfully signed up. Log in <a href="https://julis-cleaning-company.jasoncarcamo30.now.sh/login"> here</a><p></main>`
+                                };
+
+                                transporter.sendMail( mailOptions, ( error, info)=>{
+                                    if(error){
+                                        return res.status(400).json({ error });
+                                    };
+                                });
 
                                 return res.status(201).json({ token: AuthService.createJwt(sub, payload), id: createdUser.id});
                             });

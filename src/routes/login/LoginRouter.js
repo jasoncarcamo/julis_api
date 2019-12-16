@@ -1,6 +1,7 @@
 const express = require("express");
 const LoginRouter = express.Router();
 const AuthService = require("./AuthService");
+const xss = require("xss");
 
 LoginRouter
     .route("/login")
@@ -18,6 +19,12 @@ LoginRouter
             if(value === null){
                 return res.status(400).json({error: `Missing ${key} in body request`});
             };
+
+            user[key] = xss(value, {
+                whiteList: [],
+                stripIgnoreTag: true,
+                stripIgnoreTagBody: ['script']
+              });
         };
 
         AuthService.getUser(req.app.get("db"), user.mobile_number)
@@ -36,7 +43,7 @@ LoginRouter
                         
                         const sub = dbUser.mobile_number;
                         const payload = { user: dbUser.id};
-                        console.log(AuthService.createJwt(sub, payload));
+                        
                         return res.status(201).json({ token: AuthService.createJwt(sub, payload)})
                     });
             });

@@ -27,6 +27,8 @@
   "scripts": {
     "test-migrate": "postgrator --config ./test-postgrate-config.js",
     "dev": "nodemon ./src/app/server.js",
+    "start": "node ./src/app/server.js",
+    "prod-migrate": "postgrator --config ./prod-postgrate-config.js",
     "test": "mocha"
   },
   "keywords": [],

@@ -10,6 +10,9 @@ const RequestsService = {
     },
     updateRequest(db, request, id){
         return db.update(request).from("requests").where({id});
+    },
+    deleteRequest( db, id){
+        return db.delete().from("requests").where({ id });
     }
 };
 

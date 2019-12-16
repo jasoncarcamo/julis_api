@@ -12,6 +12,8 @@ const RegisterRouter = require("../routes/registration/RegisterRouter");
 const UsersRouter = require("../routes/users/UsersRouter");
 const LoginRouter = require("../routes/login/LoginRouter");
 const ChargeRouter = require("../routes/stripe/ChargeRouter");
+const ContactRouter = require("../routes/contact/ContactRouter");
+const ResetRouter = require("../routes/password/ResetRouter");
 
 app.use(morgan("common"));
 app.use(cors());
@@ -23,6 +25,8 @@ app.use("/api", RegisterRouter);
 app.use("/api", UsersRouter);
 app.use("/api", LoginRouter);
 app.use("/api", ChargeRouter);
+app.use("/api", ContactRouter);
+app.use("/api", ResetRouter);
 
 app.use("/", (req, res)=>{
     res.send("Working");

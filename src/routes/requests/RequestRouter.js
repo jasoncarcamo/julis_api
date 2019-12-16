@@ -3,6 +3,9 @@ const RequesRouter = express.Router();
 const RequestsService = require("./RequestsService");
 const {requireAuth} = require("../../middleware/JwtAuth");
 const transporter = require("../../nodemailer/nodemailer"); 
+const xss = require("xss");
+
+
 
 RequesRouter
     .route("/requests")
@@ -28,32 +31,33 @@ RequesRouter
             confirmed: req.body.confirmed === true ? req.body.confirmed : false
         };
 
-        if(update.confirmed){
-            const mailOptions = {
-                from: "jasoncarcamo30@yahoo.com",
-                to: "jasoncarcamo30@gmail.com",
-                subject: "Your services have been processed",
-                html: `<main style="text-align: center;"><p>Your services have been processed<p></main>`
-            };
-    
-            transporter.sendMail( mailOptions, ( error, info)=>{
-                if(error){
-                    console.log(error);
-                };
-    
-                if(info){
-                    console.log(info);
-                };
-            });
-        }
-
         if(!req.body.id){
             return res.status(400).json({ error: "Bad request"})
-        }
+        };
+
+
 
         RequestsService.updateRequest( req.app.get("db"), update, req.body.id)
-            .then( data => res.status(200).json({ request: "Sent"}));
-    })
+            .then( data => {
+
+                if(update.confirmed){
+                    const mailOptions = {
+                        from: "jasoncarcamo30@yahoo.com",
+                        to: req.user.email,
+                        subject: "Your services have been processed",
+                        html: `<main style="text-align: center;"><p>Your services have been processed<p></main>`
+                    };
+            
+                    transporter.sendMail( mailOptions, ( error, info)=>{
+                        if(error){
+                            return res.status(400).json({ error });
+                        };
+                    });
+                };
+
+                return res.status(200).json({ request: "Sent"})
+            });
+    });
 
 RequesRouter
     .route("/requests/:id")
@@ -64,13 +68,27 @@ RequesRouter
         
         RequestsService.getRequestById(req.app.get("db"), req.params.id)
             .then( data => {
-                console.log(data);
+                
                 if(!data){
                     return res.status(400).json({ error: "No requests found by client"})
                 };
 
                 return res.status(200).json({ requests: data})
             })
+    })
+    .delete((req, res)=> {
+        if(!req.params.id){
+            return res.status(400).json({ error: "Missing id in params"})
+        };
+
+        RequestsService.deleteRequest( req.app.get("db"), req.params.id)
+            .then( data => {
+                if(!data){
+                    return res.status(400).json({ error: "No request found"})
+                };
+
+                return res.status(200).json({ success: "Deleted"})
+            });
     })
 
 

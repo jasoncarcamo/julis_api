@@ -4,6 +4,9 @@ const UsersService = {
     },
     getAllUsers(db){
         return db.select("*").from("users").returning("*");
+    },
+    updateUser(db, update, id){
+        return db.update(update).from("users").where({ id });
     }
 };
 
