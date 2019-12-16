@@ -16,15 +16,10 @@ LoginRouter
         };
 
         for( const [key, value] of Object.entries(user)){
-            if(value === null){
+            if(value === undefined){
                 return res.status(400).json({error: `Missing ${key} in body request`});
             };
 
-            user[key] = xss(value, {
-                whiteList: [],
-                stripIgnoreTag: true,
-                stripIgnoreTagBody: ['script']
-              });
         };
 
         AuthService.getUser(req.app.get("db"), user.mobile_number)

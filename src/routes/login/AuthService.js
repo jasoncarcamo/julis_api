@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken")
 
 const AuthService = {
     getUser(db, mobile_number){
-        return db.select("*").from("users").where({mobile_number}).first();
+        return db.select("*").from("users").where({mobile_number});
     },
     comparePassword(password, hash){
         return bcrypt.compare(password, hash);

@@ -4,10 +4,10 @@ const knex = require("knex");
 
 const db = knex({
     client: "pg",
-    connection: process.env.DATABASE_URL
+    connection: process.env.TEST_DATABASE_URL
 });
 
 app.set("db", db);
 
-app.listen( process.env.PORT, ()=>{
+app.listen( 8000, ()=>{
 });
