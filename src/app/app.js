@@ -15,8 +15,13 @@ const ChargeRouter = require("../routes/stripe/ChargeRouter");
 const ContactRouter = require("../routes/contact/ContactRouter");
 const ResetRouter = require("../routes/password/ResetRouter");
 
+const corsOption = {
+    origin: "https://julis-cleaning-company.jasoncarcamo30.now.sh",
+    optionSuccessStatus: 200
+}
+
 app.use(morgan("common"));
-app.use(cors());
+app.use(cors(corsOption));
 app.use(helmet());
 
 app.use("/api", ServicesRouter);
