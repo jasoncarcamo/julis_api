@@ -23,11 +23,10 @@ LoginRouter
 
         AuthService.getUser(req.app.get("db"), user.mobile_number)
             .then( dbUser => {
-                console.log(dbUser[0], "hello")
+                
                 if(!dbUser){
                     return res.status(400).json({ error: 'No account exists.'})
                 };
-
 
                 AuthService.comparePassword( user.password, dbUser[0].password)
                     .then( matches => {
