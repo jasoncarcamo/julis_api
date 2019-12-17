@@ -6,7 +6,7 @@ const xss = require("xss");
 LoginRouter
     .route("/login")
     .all(express.json())
-    .post((req, res)=>{
+    .post((req, res, next)=>{
         const { mobile_number, password} = req.body;
 
         const user = {
@@ -23,14 +23,15 @@ LoginRouter
 
         AuthService.getUser(req.app.get("db"), user.mobile_number)
             .then( dbUser => {
-
+                console.log(dbUser[0], "hello")
                 if(!dbUser){
                     return res.status(400).json({ error: 'No account exists.'})
                 };
 
 
-                AuthService.comparePassword( user.password, dbUser.password)
+                AuthService.comparePassword( user.password, dbUser[0].password)
                     .then( matches => {
+                        console.log(matches, "yep")
                         if(!matches){
                             return res.status(400).json({ error: "Incorrect password"});
                         };
@@ -39,8 +40,10 @@ LoginRouter
                         const payload = { user: dbUser.id};
                         
                         return res.status(200).json({ token: AuthService.createJwt(sub, payload)})
-                    });
-            });
+                    })
+                    .catch(next)
+            })
+            .catch(next)
     });
 
 module.exports = LoginRouter;
