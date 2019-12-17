@@ -38,12 +38,6 @@ RegisterRouter
             if(value === undefined){
                 return res.status(400).json({ error: `Missing ${key} in body request`});
             };
-
-            newUser[key] = xss( value, {
-                whiteList: [],
-                stripIgnoreTag: true,
-                stripIgnoreTagBody: ['script']
-              });
         };
 
         RegisterService.getUser(req.app.get("db"), newUser.mobile_number)

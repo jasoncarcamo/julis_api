@@ -31,13 +31,13 @@ LoginRouter
 
                 AuthService.comparePassword( user.password, dbUser[0].password)
                     .then( matches => {
-                        console.log(matches, "yep")
+                        
                         if(!matches){
                             return res.status(400).json({ error: "Incorrect password"});
                         };
                         
-                        const sub = dbUser.mobile_number;
-                        const payload = { user: dbUser.id};
+                        const sub = dbUser[0].mobile_number;
+                        const payload = { user: dbUser[0].id};
                         
                         return res.status(200).json({ token: AuthService.createJwt(sub, payload)})
                     })
