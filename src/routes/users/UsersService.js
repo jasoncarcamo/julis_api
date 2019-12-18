@@ -1,6 +1,6 @@
 const UsersService = {
     getUser(db, id){
-        return db.select("*").from("users").where({id}).returning("*").then(([user]) => user); 
+        return db.select("*").from("users").where({id}); 
     },
     getAllUsers(db){
         return db.select("*").from("users").returning("*");

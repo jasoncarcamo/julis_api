@@ -26,17 +26,17 @@ UsersRouter
             .then( user => {
                 console.log(user);
                 return res.status(200).json({
-                    id: user.id,
-                    first_name: user.first_name,                                  
-                    last_name: user.last_name,                                    
-                    email: user.email,                                            
-                    mobile_number: user.mobile_number,                            
-                    house_number: user.house_number,                              
-                    apartment_number: user.apartment_number,                      
-                    street_name: user.street_name,                                
-                    city: user.city,                                              
-                    state: user.state,                                            
-                    zip_code: user.zip_code
+                    id: user[0].id,
+                    first_name: user[0].first_name,                                  
+                    last_name: user[0].last_name,                                    
+                    email: user[0].email,                                            
+                    mobile_number: user[0].mobile_number,                            
+                    house_number: user[0].house_number,                              
+                    apartment_number: user[0].apartment_number,                      
+                    street_name: user[0].street_name,                                
+                    city: user[0].city,                                              
+                    state: user[0].state,                                            
+                    zip_code: user[0].zip_code
                  });
             })
             .catch(next);
