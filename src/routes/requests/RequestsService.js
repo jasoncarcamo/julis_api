@@ -6,7 +6,7 @@ const RequestsService = {
         return db.select("*").from("requests").where({user_id: id}).returning("*");
     },
     createRequest(db, request){
-        return db.insert(request).into("requests");
+        return db.insert(request).into("requests").returning('*').then(([request])=> request);
     },
     updateRequest(db, request, id){
         return db.update(request).from("requests").where({id});
