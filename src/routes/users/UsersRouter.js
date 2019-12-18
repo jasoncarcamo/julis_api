@@ -10,7 +10,7 @@ UsersRouter
     .all(requireAuth)
     .all(express.json())
     .get((req, res,next)=>{
-        console.log(req.user.id);
+        console.log(req.user);
         UsersService.getUser( req.app.get("db"), req.user.id)
             .then( user => {
                 return res.status(200).json({ user: user[0] });
