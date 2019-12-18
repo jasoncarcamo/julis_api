@@ -1,7 +1,6 @@
-
 require("dotenv").config();
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
 
 const AuthService = {
     getUser(db, mobile_number){
