@@ -23,7 +23,7 @@ UsersRouter
     .get((req, res)=>{
         UsersService.getUser( req.app.get("db"), req.user.id)
             .then( user => {
-
+                console.log(user);
                 return res.status(200).json({
                     id: user.id,
                     first_name: user.first_name,                                  last_name: user.last_name,                                    email: user.email,                                            mobile_number: user.mobile_number,                            house_number: user.house_number,                              apartment_number: user.apartment_number,                      street_name: user.street_name,                                city: user.city,                                              state: user.state,                                            zip_code: user.zip_code
