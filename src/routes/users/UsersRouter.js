@@ -9,26 +9,37 @@ UsersRouter
     .route("/users")
     .all(requireAuth)
     .all(express.json())
-    .get((req, res)=>{
+    .get((req, res,next)=>{
         UsersService.getUser( req.app.get("db"), req.user.id)
             .then( user => {
                 return res.status(200).json({ user })
-            });
+            })
+            .catch(next)
     });
 
 UsersRouter
     .route("/user")
     .all(requireAuth)
     .all(express.json())
-    .get((req, res)=>{
+    .get((req, res, next)=>{
         UsersService.getUser( req.app.get("db"), req.user.id)
             .then( user => {
                 console.log(user);
                 return res.status(200).json({
                     id: user.id,
-                    first_name: user.first_name,                                  last_name: user.last_name,                                    email: user.email,                                            mobile_number: user.mobile_number,                            house_number: user.house_number,                              apartment_number: user.apartment_number,                      street_name: user.street_name,                                city: user.city,                                              state: user.state,                                            zip_code: user.zip_code
+                    first_name: user.first_name,                                  
+                    last_name: user.last_name,                                    
+                    email: user.email,                                            
+                    mobile_number: user.mobile_number,                            
+                    house_number: user.house_number,                              
+                    apartment_number: user.apartment_number,                      
+                    street_name: user.street_name,                                
+                    city: user.city,                                              
+                    state: user.state,                                            
+                    zip_code: user.zip_code
                  });
-            });
+            })
+            .catch(next);
     })
     .patch((req, res)=> {
         const {
@@ -82,7 +93,8 @@ UsersRouter
                 });
 
                 return res.status(200).json({ success: "Your address has been updated"});
-            });
+            })
+            .catch(next);
     })
 
 

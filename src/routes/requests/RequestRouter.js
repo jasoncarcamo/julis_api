@@ -15,12 +15,13 @@ RequesRouter
         RequestsService.getAllRequests(req.app.get("db"))
             .then( data => res.status(200).json({ requests: data}));
     })
-    .post((req, res)=>{
+    .post((req, res, next)=>{
         
         RequestsService.createRequest( req.app.get("db"), req.body)
-            .then( data => res.status(200).json({ id: data}));
+            .then( data => res.status(200).json({ id: data}))
+            .catch(next);
     })
-    .patch((req, res)=>{
+    .patch((req, res, next)=>{
         
         const update = {
             service: req.body.service,
@@ -55,14 +56,15 @@ RequesRouter
                 };
 
                 return res.status(200).json({ request: "Sent"})
-            });
+            })
+            .catch(next);
     });
 
 RequesRouter
     .route("/requests/:id")
     .all(requireAuth)
     .all(express.json())
-    .get((req, res)=>{
+    .get((req, res, next)=>{
         
         RequestsService.getRequestById(req.app.get("db"), req.params.id)
             .then( data => {
@@ -73,6 +75,7 @@ RequesRouter
 
                 return res.status(200).json({ requests: data})
             })
+            .catch(next)
     })
     .delete((req, res)=> {
         if(!req.params.id){
