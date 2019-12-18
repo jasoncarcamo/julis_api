@@ -1,7 +1,7 @@
 require("dotenv").config();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const {} = require("../../../config");
+const {JWT_SECRET} = require("../../../config");
 
 const AuthService = {
     getUser(db, mobile_number){
@@ -11,13 +11,13 @@ const AuthService = {
         return bcrypt.compare(password, hash);
     },
     createJwt(subject, payload){
-        return jwt.sign(payload, process.env.JWT_SECRET, {
+        return jwt.sign(payload, JWT_SECRET, {
             subject,
             algorithm: 'HS256'
         });
     },
     verifyJwt(token){
-        return jwt.verify(token, process.env.JWT_SECRET, {
+        return jwt.verify(token, JWT_SECRET, {
             algorithms: ['HS256'],
         });
     }
