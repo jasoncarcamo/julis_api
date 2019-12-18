@@ -16,7 +16,6 @@ RequesRouter
             .then( data => res.status(200).json({ requests: data}));
     })
     .post((req, res, next)=>{
-        console.log(req.body)
         RequestsService.createRequest( req.app.get("db"), req.body)
             .then( data => res.status(200).json({ id: data}))
             .catch(next);
