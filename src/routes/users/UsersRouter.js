@@ -13,7 +13,7 @@ UsersRouter
         console.log(req.user.id);
         UsersService.getUser( req.app.get("db"), req.user.id)
             .then( user => {
-                return res.status(200).json({ user })
+                return res.status(200).json({ user: user[0] });
             })
             .catch(next)
     });
