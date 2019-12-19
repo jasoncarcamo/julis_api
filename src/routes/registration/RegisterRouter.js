@@ -12,7 +12,7 @@ RegisterRouter
         RegisterService.getUsers(req.app.get("db"))
             .then( data => res.status(200).json({ user: data}));
     })
-    .post((req, res)=>{
+    .post((req, res, next)=>{
         const {first_name, last_name, email, mobile_number, password, house_number, apartment_number, street_name, city, state, zip_code} = req.body;
 
         if(req.body.apartment_number == undefined){
@@ -70,9 +70,12 @@ RegisterRouter
                                 });
 
                                 return res.status(200).json({ token: AuthService.createJwt(sub, payload), id: createdUser.id});
-                            });
-                    });
-            });
+                            })
+                            .catch(next);
+                    })
+                    .catch(next);
+            })
+            .catch(next)
     });
 
 module.exports = RegisterRouter;
