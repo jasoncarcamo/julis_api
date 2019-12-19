@@ -43,7 +43,7 @@ UsersRouter
                     zip_code: user[0].zip_code
                  });
             })
-            .catch(next);
+            .catch(next)
     })
     .patch((req, res,next)=> {
         const {
