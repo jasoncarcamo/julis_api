@@ -3,6 +3,7 @@ const UsersRouter = express.Router();
 const UsersService = require("./UsersService");
 const {requireAuth} = require("../../middleware/JwtAuth");
 const xss = require('xss');
+const transporter = require("../../nodemailer/nodemailer");
 
 
 UsersRouter
@@ -44,7 +45,7 @@ UsersRouter
             })
             .catch(next);
     })
-    .patch((req, res)=> {
+    .patch((req, res, next)=> {
         const {
             house_number, 
             apartment_number,
