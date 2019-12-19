@@ -72,11 +72,7 @@ UsersRouter
                 return res.status(400).json({ error: `Missing ${key} in body request`});
             };
 
-            newAddress[key] = xss( value, {
-                whiteList: [],
-                stripIgnoreTag: true,
-                stripIgnoreTagBody: ['script']
-              });
+            
         };
         
         UsersService.updateUser( req.app.get("db"), newAddress, req.user.id)
