@@ -12,7 +12,7 @@ ResetPassword
     .route("/reset")
     .all(requireAuth)
     .all(express.json())
-    .post((req, res)=> {
+    .post((req, res, next)=> {
         const {
             newPassword,
             confirmPassword
@@ -27,12 +27,6 @@ ResetPassword
             if( value === undefined){
                 return res.status(400).json({ error: `Missing ${key} in body request`});
             };
-
-            password[key] = xss(value, {
-                whiteList: [],
-                stripIgnoreTag: true,
-                stripIgnoreTagBody: ['script']
-              });
         }
 
         UserService.getUser( req.app.get("db"), req.user.id)
@@ -71,9 +65,13 @@ ResetPassword
                                         
                                         return res.status(200).json({ success: "Your password has been changed"});
                                     })
+                                    .catch(next)
                             })
+                            .catch(next)
                     })
+                    .catch(next)
             })
+            .catch(next)
 
     })
 
