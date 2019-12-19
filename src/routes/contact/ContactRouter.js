@@ -31,11 +31,6 @@ ContactRouter
                 return res.status(400).json({ error: `Missing ${key} in body request`});
             };
 
-            userComment[key] = xss(value, {
-                whiteList: [],
-                stripIgnoreTag: true,
-                stripIgnoreTagBody: ['script']
-              });
         };
 
         const mailOptions = {
