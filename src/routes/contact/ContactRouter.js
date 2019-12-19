@@ -58,7 +58,7 @@ ContactRouter
     .route("/contact/:id")
     .all(requireAuth)
     .all(express.json())
-    .get((req, res)=>{
+    .get((req, res, next)=>{
 
     })
     .post((req, res)=> {
