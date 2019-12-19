@@ -35,7 +35,7 @@ ResetPassword
                     return res.status(400).json({error: "No user found"});
                 };
                 
-                AuthService.comparePassword(password.newPassword, user.password)
+                AuthService.comparePassword(password.newPassword, user[0].password)
                     .then( currentPassword => {
                         
                         if(currentPassword){
