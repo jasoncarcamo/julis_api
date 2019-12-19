@@ -45,7 +45,7 @@ UsersRouter
             })
             .catch(next);
     })
-    .patch((req, res, next)=> {
+    .patch((req, res,next)=> {
         const {
             house_number, 
             apartment_number,
