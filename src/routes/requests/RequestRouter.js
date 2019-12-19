@@ -75,7 +75,7 @@ RequesRouter
 
                 return res.status(200).json({ requests: data})
             })
-            .catch(next)
+            .catch(next);
     })
     .delete((req, res)=> {
         if(!req.params.id){
