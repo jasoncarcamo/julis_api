@@ -86,12 +86,6 @@ UsersRouter
                     html: `<main style="text-align: center;"><p>You have successfully edited your address. View your info <a href="https://julis-cleaning-company.jasoncarcamo30.now.sh/login"> here</a><p></main>`
                 };
 
-                transporter.sendMail( mailOptions, ( error, info)=>{
-                    if(error){
-                        return res.status(400).json({ error });
-                    };
-                });
-
                 return res.status(200).json({ success: "Your address has been updated"});
             })
             .catch(next);

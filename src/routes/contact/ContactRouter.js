@@ -40,16 +40,6 @@ ContactRouter
             html: `<main style="text-align: center;"><p>Thank you for contacting us. You will be hearing from us soon.<p></main>`
         };
 
-        transporter.sendMail( mailOptions, ( error, info)=>{
-            if(error){
-                return res.status(400).json({ error });
-            };
-
-            if(info){
-                return res.status(200).json({ success: "Your comment has been sent"});
-            };
-        });
-
         return res.status(200).json({success: "Thank you for contacting us!"})
 
     })
