@@ -27,7 +27,7 @@ ResetPassword
             if( value === undefined){
                 return res.status(400).json({ error: `Missing ${key} in body request`});
             };
-        }
+        };
 
         UserService.getUser( req.app.get("db"), req.user.id)
             .then( user => {
