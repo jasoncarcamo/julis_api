@@ -20,7 +20,7 @@ ChargeRouter
         };
 
         const mailOptions = {
-            from: "jasoncarcamo30@yahoo.com",
+            from: "jasoncarcamo30@gmail.com",
             to: "jasoncarcamo30@gmail.com",
             subject: "Your services have been processed",
             html: "<html> <header> <h3>Julis Cleaning service</h3></header> <main> <p>Your services have been processed<p></main></html>"

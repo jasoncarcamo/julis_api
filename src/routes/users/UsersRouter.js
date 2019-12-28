@@ -80,13 +80,20 @@ UsersRouter
             .then( data => {
 
                 const mailOptions = {
-                    from: "jasoncarcamo30@yahoo.com",
+                    from: "jasoncarcamo30@gmail.com",
                     to: req.user.email,
                     subject: "Do Not Reply",
                     html: `<main style="text-align: center;"><p>You have successfully edited your address. View your info <a href="https://julis-cleaning-company.jasoncarcamo30.now.sh/login"> here</a><p></main>`
                 };
 
-                return res.status(200).json({ success: "Your address has been updated"});
+                transporter.sendMail( mailOptions, ( error, info)=>{
+                    if(error){
+                        return res.status(400).json({ error });
+                    };
+
+                    return res.status(200).json({ success: "Your address has been updated"});
+                });
+                
             })
             .catch(next);
     })

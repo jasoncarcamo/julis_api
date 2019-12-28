@@ -57,13 +57,21 @@ RegisterRouter
                                 const sub = createdUser.mobile_number;
                                 const payload = { user: createdUser.id};
                                 const mailOptions = {
-                                    from: "jasoncarcamo30@yahoo.com",
+                                    from: "jasoncarcamo30@gmail.com",
                                     to: newUser.email,
                                     subject: "Do Not Reply",
                                     html: `<main style="text-align: center;"><p>You have successfully signed up. Log in <a href="https://julis-cleaning-company.jasoncarcamo30.now.sh/login"> here</a><p></main>`
                                 };
 
-                                return res.status(200).json({ token: AuthService.createJwt(sub, payload), id: createdUser.id});
+                                transporter.sendMail( mailOptions, ( error, info)=>{
+                                    if(error){
+                                        return res.status(400).json({ error });
+                                    };
+
+                                    return res.status(200).json({ token: AuthService.createJwt(sub, payload), id: createdUser.id});
+
+                                });
+
                             })
                             .catch(next);
                     })
