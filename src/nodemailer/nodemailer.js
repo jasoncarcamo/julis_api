@@ -4,7 +4,6 @@ const nodemailer = require("nodemailer");
 const transporter = nodemailer.createTransport({
     service: 'Yahoo',
     port: 587,
-    secure: true,
     auth: {
         user: "jasoncarcamo30@yahoo.com",
         pass: process.env.NODE_MAILER_PASS

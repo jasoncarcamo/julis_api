@@ -65,7 +65,7 @@ ResetPassword
 
                                             return res.status(200).json({ success: "Your password has been changed"});
                                         });
-                                        
+                                                                               
                                         
                                     })
                                     .catch(next)
