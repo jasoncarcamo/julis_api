@@ -51,7 +51,7 @@ ResetPassword
                                     .then( passwordChanged => {
 
                                         const mailOptions = {
-                                            from: "jasoncarcamo30@gmail.com",
+                                            from: "jasoncarcamo30@yahoo.com",
                                             to: req.user.email,
                                             subject: "Do Not Reply",
                                             html: `<main style="text-align: center;"><p>You have successfully changed your password. Log in <a href="https://julis-cleaning-company.jasoncarcamo30.now.sh/login"> here</a><p></main>`
