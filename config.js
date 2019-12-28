@@ -1,7 +1,7 @@
-require("dotenv").config();
+require("dotenv").config({ path: ".env"});
 module.exports = {
     PORT: process.env.PORT || 8000,
     DATABASE_URL: process.env.DATABASE_URL || 'postgresql://jason:carcamo11@localhost/api-test',
     NODE_ENV: process.env.NODE_ENV || 'development',    
-    JWT_SECRET: process.env.JWT_SECRET || 'khbqiwbidbiu2',
+    JWT_SECRET: process.env.JWT_SECRET || 'khbqijkbkjkkwbidbiu2',
 };

@@ -59,7 +59,7 @@ ResetPassword
         
                                         transporter.sendMail( mailOptions, ( error, info)=>{
                                             if(error){
-                                                console.log(error, req.user.email)
+                                                
                                                 return res.status(400).json({ error: "Email failed" });
                                             };
 
