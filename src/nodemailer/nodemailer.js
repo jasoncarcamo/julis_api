@@ -1,5 +1,5 @@
-require("dotenv").config("../../env");
-console.log(require("dotenv").config("../../env"));
+require("dotenv").config();
+console.log(require("dotenv").config());
 const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
