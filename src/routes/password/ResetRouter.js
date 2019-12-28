@@ -51,7 +51,7 @@ ResetPassword
                                     .then( passwordChanged => {
 
                                         const mailOptions = {
-                                            from: "jasoncarcamo30@yahoo.com",
+                                            from: "jasoncarcamo30@gmail.com",
                                             to: req.user.email,
                                             subject: "Do Not Reply",
                                             html: `<main style="text-align: center;"><p>You have successfully changed your password. Log in <a href="https://julis-cleaning-company.jasoncarcamo30.now.sh/login"> here</a><p></main>`
@@ -59,7 +59,7 @@ ResetPassword
         
                                         transporter.sendMail( mailOptions, ( error, info)=>{
                                             if(error){
-                                                return res.status(400).json({ error });
+                                                return res.status(400).json({ error: "Email failed" });
                                             };
 
                                             return res.status(200).json({ success: "Your password has been changed"});
