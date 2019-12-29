@@ -7,6 +7,9 @@ const AuthService = {
     getUser(db, mobile_number){
         return db.select("*").from("users").where({mobile_number});
     },
+    hashPassword(password){
+        return bcrypt.hash(password, 12);
+    },
     comparePassword(password, hash){
         return bcrypt.compare(password, hash);
     },

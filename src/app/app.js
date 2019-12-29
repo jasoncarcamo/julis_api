@@ -1,5 +1,4 @@
 require("dotenv").config();
-console.log(require("dotenv").config())
 const express = require("express");
 const app = express();
 const helmet = require("helmet");

@@ -18,6 +18,6 @@ CREATE TABLE users (
 INSERT INTO users
 (first_name, last_name, email, mobile_number, password, house_number, street_name, city, state, zip_code)
 VALUES
-('Jason', 'Carcamo', 'jasoncarcamo30@yahoo.com', '+1 (631) 11', '$2a$12$5j.0uYz/QMJsNs4yXZYZeu7ssmiIQKugHUfXxFseZLawIg.bpvKDW', '11', 'Rodney pl', 'Amityville', 'Ny', '11701'),
+('Admin', 'admin', 'juliscleaningcompany@yahoo.com', '+1 (631) 526-3306', '$2a$12$.me1qPzrOaf9tX84kSZK.un25nacXckcTC0zRQgJWxLJHt.oOYTrS', '2', 'Madison ave', 'Amityville', 'Ny', '11701'),
 ('Jason', 'Carcamo', 'jasoncarcamo30@yahoo.com', '+1 (631) 22', '$2a$12$5j.0uYz/QMJsNs4yXZYZeu7ssmiIQKugHUfXxFseZLawIg.bpvKDW', '11', 'Rodney pl', 'Amityville', 'Ny', '11701'),
 ('Jason', 'Carcamo', 'jasoncarcamo30@yahoo.com', '+1 (631) 33', '$2a$12$5j.0uYz/QMJsNs4yXZYZeu7ssmiIQKugHUfXxFseZLawIg.bpvKDW', '11', 'Rodney pl', 'Amityville', 'Ny', '11701');

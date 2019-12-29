@@ -38,8 +38,15 @@ LoginRouter
                         
                         const sub = dbUser[0].mobile_number;
                         const payload = { user: dbUser[0].id};
+
+                        if(dbUser[0].id == 1){
+
+                            return res.status(200).json({ adminToken: AuthService.createJwt(sub, payload)});
+
+                        };
                         
-                        return res.status(200).json({ token: AuthService.createJwt(sub, payload)})
+                        return res.status(200).json({ token: AuthService.createJwt(sub, payload)});
+
                     })
                     .catch(next)
             })
