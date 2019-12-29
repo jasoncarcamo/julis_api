@@ -16,13 +16,13 @@ RequesRouter
             .then( data => {
 
                 if(req.user.id == 1){
-                    console.log("admin");
+                    
                     RequestsService.adminGetRequests(req.app.get("db"))
                         .then( adminRequests => {
-                            console.log(adminRequests);
 
-                            return res.status(200).json({ adminrequests: adminRequests});
+                            return res.status(200).json({adminRequests});
                         });
+
                 } else{
                     return res.status(200).json({ requests: data});
                 };                
