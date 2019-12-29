@@ -43,9 +43,10 @@ LoginRouter
 
                             return res.status(200).json({ adminToken: AuthService.createJwt(sub, payload)});
 
-                        };
+                        }else {
+                            return res.status(200).json({ token: AuthService.createJwt(sub, payload)});
+                        };                    
                         
-                        return res.status(200).json({ token: AuthService.createJwt(sub, payload)});
 
                     })
                     .catch(next)
