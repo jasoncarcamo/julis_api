@@ -1,4 +1,7 @@
 const RequestsService = {
+    adminGetRequests(db){
+        return db.select("*").from("requests").where({ admin_confirmed: false});
+    },
     getAllRequests(db){
         return db.select("*").from("requests").returning("*");
     },

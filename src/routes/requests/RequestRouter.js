@@ -13,7 +13,20 @@ RequesRouter
     .all(requireAuth)
     .get(( req, res) => {
         RequestsService.getAllRequests(req.app.get("db"))
-            .then( data => res.status(200).json({ requests: data}));
+            .then( data => {
+
+                if(req.user.id == 1){
+                    console.log("admin");
+                    RequestsService.adminGetRequests(req.app.get("db"))
+                        .then( adminRequests => {
+                            console.log(adminRequests);
+
+                            return res.status(200).json({ adminrequests: adminRequests});
+                        });
+                } else{
+                    return res.status(200).json({ requests: data});
+                };                
+            });
     })
     .post((req, res, next)=>{
         
