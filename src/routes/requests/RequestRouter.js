@@ -67,10 +67,12 @@ RequesRouter
                         };
 
                         return res.status(200).json({ request: "Sent"});
+                        
                     });
+                } else{
+                    return res.status(200).json({ request: "Sent"});
                 };
-
-                return res.status(200).json({ request: "Sent"});
+                
             })
             .catch(next);
     });
