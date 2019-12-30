@@ -34,7 +34,7 @@ ContactRouter
         };
 
         const mailOptions = {
-            from: "jasoncarcamo30@gmail.com",
+            from: "jasoncarcamo30@yahoo.com",
             to: userComment.email,
             subject: "Thank you for contacting us",
             html: `<main style="text-align: center;"><p>Thank you for contacting us. You will be hearing from us soon.<p></main>`
@@ -68,7 +68,7 @@ ContactRouter
         };
 
         const mailOptions = {
-            from: "jasoncarcamo30@gmail.com",
+            from: "jasoncarcamo30@yahoo.com",
             to: req.user.email,
             subject: "Thank you for contacting us",
             html: `<main style="text-align: center;"><p>Thank you for contacting us. You will be hearing from us soon.<p></main>`

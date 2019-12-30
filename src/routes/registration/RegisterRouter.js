@@ -57,7 +57,7 @@ RegisterRouter
                                 const sub = createdUser.mobile_number;
                                 const payload = { user: createdUser.id};
                                 const mailOptions = {
-                                    from: "jasoncarcamo30@gmail.com",
+                                    from: "jasoncarcamo30@yahoo.com",
                                     to: newUser.email,
                                     subject: "Do Not Reply",
                                     html: `<main style="text-align: center;"><p>You have successfully signed up. Log in <a href="https://julis-cleaning-company.jasoncarcamo30.now.sh/login"> here</a><p></main>`

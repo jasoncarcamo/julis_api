@@ -27,7 +27,7 @@ UsersRouter
         .get((req, res,next)=>{
             UsersService.getUser(req.app.get("db"), req.params.id)
                 .then( user => {
-                    
+
                     return res.status(200).json({ user: {
                         id: user[0].id,
                     first_name: user[0].first_name,                               last_name: user[0].last_name,                                 email: user[0].email,                                         mobile_number: user[0].mobile_number,                         house_number: user[0].house_number,                           apartment_number: user[0].apartment_number,                   street_name: user[0].street_name,                             city: user[0].city,                                           state: user[0].state,                                         zip_code: user[0].zip_code
@@ -86,7 +86,7 @@ UsersRouter
             .then( data => {
 
                 const mailOptions = {
-                    from: "jasoncarcamo30@gmail.com",
+                    from: "jasoncarcamo30@yahoo.com",
                     to: req.user.email,
                     subject: "Do Not Reply",
                     html: `<main style="text-align: center;"><p>You have successfully edited your address. View your info <a href="https://julis-cleaning-company.jasoncarcamo30.now.sh/login"> here</a><p></main>`
