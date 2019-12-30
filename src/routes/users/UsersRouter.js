@@ -20,6 +20,21 @@ UsersRouter
             .catch(next)
     });
 
+    UsersRouter
+        .route("/user/:id")
+        .all(requireAuth)
+        .all(express.json())
+        .get((req, res,next)=>{
+            UsersService.getUser(req.app.get("db"), req.params.id)
+                .then( user => {
+                    
+                    return res.status(200).json({ user: {
+                        id: user[0].id,
+                    first_name: user[0].first_name,                               last_name: user[0].last_name,                                 email: user[0].email,                                         mobile_number: user[0].mobile_number,                         house_number: user[0].house_number,                           apartment_number: user[0].apartment_number,                   street_name: user[0].street_name,                             city: user[0].city,                                           state: user[0].state,                                         zip_code: user[0].zip_code
+                    }})
+                })
+        })
+
 UsersRouter
     .route("/user")
     .all(requireAuth)
@@ -31,16 +46,7 @@ UsersRouter
 
                 return res.status(200).json({
                     id: user[0].id,
-                    first_name: user[0].first_name,                                  
-                    last_name: user[0].last_name,                                    
-                    email: user[0].email,                                            
-                    mobile_number: user[0].mobile_number,                            
-                    house_number: user[0].house_number,                              
-                    apartment_number: user[0].apartment_number,                      
-                    street_name: user[0].street_name,                                
-                    city: user[0].city,                                              
-                    state: user[0].state,                                            
-                    zip_code: user[0].zip_code
+                    first_name: user[0].first_name,                               last_name: user[0].last_name,                                 email: user[0].email,                                         mobile_number: user[0].mobile_number,                         house_number: user[0].house_number,                           apartment_number: user[0].apartment_number,                   street_name: user[0].street_name,                             city: user[0].city,                                           state: user[0].state,                                         zip_code: user[0].zip_code
                  });
             })
             .catch(next)
