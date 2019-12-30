@@ -1,13 +1,14 @@
-require("dotenv").config({ path: ".env"});
+require("dotenv").config();
 
 const nodemailer = require("nodemailer");
+const {NODE_MAILER_PASS} = require("../../config");
 
 const transporter = nodemailer.createTransport({
     service: 'Yahoo',
     port: 587,
     auth: {
         user: "jasoncarcamo30@yahoo.com",
-        pass: process.env.NODE_MAILER_PASS
+        pass: NODE_MAILER_PASS
     }
 });
 
