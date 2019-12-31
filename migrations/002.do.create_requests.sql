@@ -8,5 +8,6 @@ CREATE TABLE requests(
     date_modified TIMESTAMP,
     confirmed BOOLEAN DEFAULT FALSE NOT NULL,
     admin_confirmed BOOLEAN DEFAULT FALSE NOT NULL,
+    admin_comment TEXT,
     user_id INTEGER REFERENCES users(id) ON DELETE CASCADE NOT NULL
 );

@@ -94,6 +94,13 @@ RequesRouter
             })
             .catch(next);
     })
+    .patch((res, req, next)=>{
+        RequestsService.updateRequest( req.app.get("db"), req.body, req.params.id)
+            .then( data => {
+                return res.status(200).json({ success: "Your request has been updated"});
+            });
+
+    })
     .delete((req, res)=> {
         if(!req.params.id){
             return res.status(400).json({ error: "Missing id in params"})
