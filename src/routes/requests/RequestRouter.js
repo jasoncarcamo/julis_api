@@ -1,5 +1,5 @@
 const express = require("express");
-const RequesRouter = express.Router();
+const RequestRouter = express.Router();
 const RequestsService = require("./RequestsService");
 const {requireAuth} = require("../../middleware/JwtAuth");
 const transporter = require("../../nodemailer/nodemailer"); 
@@ -7,7 +7,7 @@ const xss = require("xss");
 
 
 
-RequesRouter
+RequestRouter
     .route("/requests")
     .all(express.json())
     .all(requireAuth)
@@ -77,12 +77,12 @@ RequesRouter
             .catch(next);
     });
 
-RequesRouter
+RequestRouter
     .route("/requests/:id")
-    .all(requireAuth)
     .all(express.json())
+    .all(requireAuth)
     .get((req, res, next)=>{
-        
+        console.log(req.params.id)
         RequestsService.getRequestById(req.app.get("db"), req.params.id)
             .then( data => {
                 
@@ -94,7 +94,11 @@ RequesRouter
             })
             .catch(next);
     })
-    .patch((res, req, next)=>{
+    .post((req,res)=>{
+        
+    })
+    .patch((req, res, next)=>{
+
         RequestsService.updateRequest( req.app.get("db"), req.body, req.params.id)
             .then( data => {
                 return res.status(200).json({ success: "Your request has been updated"});
@@ -117,4 +121,4 @@ RequesRouter
     })
 
 
-module.exports = RequesRouter;
+module.exports = RequestRouter;
