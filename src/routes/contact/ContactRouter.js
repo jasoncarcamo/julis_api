@@ -37,7 +37,7 @@ ContactRouter
             from: "jasoncarcamo30@yahoo.com",
             to: userComment.email,
             subject: "Thank you for contacting us",
-            html: `<main style="text-align: center;"><p>Thank you for contacting us. You will be hearing from us soon.<p></main>`
+            html: `<main style="text-align: center;"><p>${userComment.comments}<p></main>`
         };
 
         transporter.sendMail( mailOptions, ( error, info)=>{

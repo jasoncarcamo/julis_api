@@ -116,7 +116,8 @@ RequestRouter
                     return res.status(400).json({ error: "No request found"})
                 };
 
-                return res.status(200).json({ success: "Deleted"})
+                return res.status(200).json({ success: "Deleted"});
+                
             });
     })
 
