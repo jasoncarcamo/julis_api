@@ -21,7 +21,7 @@
     "xss": "^1.0.6"
   },
   "devDependencies": {
-    "mocha": "^6.2.2",
+    "mocha": "^10.2.0",
     "postgrator-cli": "^3.3.0"
   },
   "scripts": {
